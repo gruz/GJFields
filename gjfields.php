@@ -23,7 +23,15 @@ if (!class_exists('JPluginGJFields'))
 $app     = JFactory::getApplication();
 $version = new JVersion;
 $base    = 'components.com_fabrik.classes.' . str_replace('.', '', $version->RELEASE);
-$loaded = JLoader::import($base . '.FormField', JPATH_SITE . '/administrator', 'administrator.');
+
+if (version_compare($version->RELEASE, '3.8', '<'))
+{
+	$loaded = JLoader::import($base . '.field', JPATH_SITE . '/administrator', 'administrator.');
+}
+else
+{
+	$loaded = JLoader::import($base . '.FormField', JPATH_SITE . '/administrator', 'administrator.');
+}
 /** ##mygruz20180410015059 } */
 
 /**
